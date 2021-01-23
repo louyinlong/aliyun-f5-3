@@ -1,15 +1,23 @@
 <form [formGroup]="myForm">
     <div class="form-group">
-        <label for="cpid">产品ID</label>
-        <input type="text" class="form-control" id="cpid" name="cpid" [formControl]='cpid'>
+        <label for="id">ID</label>
+        <input type="text" class="form-control" id="id" name="id" [formControl]='id'>
     </div>
     <div class="form-group">
-        <label for="cpName">产品名称</label>
-        <input type="text" class="form-control" id="cpName" name="cpName" [formControl]='cpName'>
+        <label for="name">姓名</label>
+        <input type="text" class="form-control" id="name" name="name" [formControl]='name'>
     </div>
     <div class="form-group">
-        <label for="cpprice">产品价格</label>
-        <input type="text" class="form-control" id="cpprice" name="cpprice" [formControl]='cpprice'>
+        <label for="cpprice">性别</label>
+        <input type="text" class="form-control" id="sex" name="sex" [formControl]='sex'>
+    </div>
+    <div class="form-group">
+        <label for="age">年龄</label>
+        <input type="text" class="form-control" id="age" name="age" [formControl]='age'>
+    </div>
+    <div class="form-group">
+        <label for="telephone">家属联系方式</label>
+        <input type="text" class="form-control" id="telephone" name="telephone" [formControl]='telephone'>
     </div>
 </form>
 
@@ -22,18 +30,20 @@
 <table class="table table-dark">
     <thead>
         <tr>
-            <!-- <th scope="col">#</th> -->
             <th scope="col">ID</th>
-            <th scope="col">名称</th>
-            <th scope="col">价格</th>
+            <th scope="col">姓名</th>
+            <th scope="col">性别</th>
+            <th scope="col">年龄</th>
+            <th scope="col">联系方式</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor='let cp of cpusers$ | async;let i=index' (click)="select(cp)">
-            <!-- <th scope="row">1</th> -->
-            <td>{{cp.cpid}}</td>
-            <td>{{cp.cpName}}</td>
-            <td>{{cp.cpprice}}</td>
+            <td>{{cp.id}}</td>
+            <td>{{cp.name}}</td>
+            <td>{{cp.sex}}</td>
+            <td>{{cp.age}}</td>
+            <td>{{cp.telephone}}</td>
         </tr>
     </tbody>
 </table>

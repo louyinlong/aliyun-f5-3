@@ -13,7 +13,7 @@ import { User } from './user';
 export class UserManagementComponentComponent implements OnInit {
 
   myForm: FormGroup;
-  id: AbstractControl;
+  userID: AbstractControl;
   userName: AbstractControl;
   password: AbstractControl;
   userRole: AbstractControl;
@@ -23,12 +23,12 @@ export class UserManagementComponentComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private httpClient: HttpClient) {
     this.myForm = this.fb.group({
-      'id': [''],
+      'userID': [''],
       'userName': [''],
       'password': [''],
       'userRole': [''],
     });
-    this.id = this.myForm.controls['id'];
+    this.userID = this.myForm.controls['userID'];
     this.userName = this.myForm.controls['userName'];
     this.password = this.myForm.controls['password'];
     this.userRole = this.myForm.controls['userRole'];
@@ -45,11 +45,11 @@ export class UserManagementComponentComponent implements OnInit {
 
   search() {
     let params = new HttpParams()
-      .set('id', this.id.value)
+      .set('userID', this.userID.value)
       .set('userName', this.userName.value)
       .set('password', this.password.value)
       .set('userRole', this.userRole.value)
-    if (this.id.value) {
+    if (this.userID.value) {
       this.users$ = <Observable<User>>this.httpClient.get(this.baseUrl + 'users/' + params);
     } else {
       this.users$ = <Observable<User>>this.httpClient.get(this.baseUrl + 'users');
@@ -58,7 +58,7 @@ export class UserManagementComponentComponent implements OnInit {
 
   add() {
     let params = new HttpParams()
-      .set('id', this.id.value)
+      .set('userID', this.userID.value)
       .set('userName', this.userName.value)
       .set('password', this.password.value)
       .set('userRole', this.userRole.value)
@@ -75,7 +75,7 @@ export class UserManagementComponentComponent implements OnInit {
 
   delete() {
     const params = new HttpParams()
-      .set('id', this.id.value)
+      .set('userID', this.userID.value)
       .set('userName', this.userName.value)
 
     this.httpClient.delete(this.baseUrl + 'users/' + params).subscribe(
@@ -90,7 +90,7 @@ export class UserManagementComponentComponent implements OnInit {
 
   update() {
     let params = new HttpParams()
-      .set('id', this.id.value)
+      .set('userID', this.userID.value)
       .set('userName', this.userName.value)
       .set('password', this.password.value)
       .set('userRole', this.userRole.value)

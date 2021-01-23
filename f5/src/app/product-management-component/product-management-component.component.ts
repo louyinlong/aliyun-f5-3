@@ -11,22 +11,28 @@ import { Cp } from './cp';
 })
 export class ProductManagementComponentComponent implements OnInit {
   myForm: FormGroup;
-  cpName: AbstractControl;
-  cpid: AbstractControl;
-  cpprice: AbstractControl;
+  id: AbstractControl;
+  name: AbstractControl;
+  sex: AbstractControl;
+  age: AbstractControl;
+  telephone: AbstractControl;
   cpusers$: Observable<Cp>;
   baseUrl = 'http://192.168.43.198:8080/';
   currentcpusers: Cp;
 
   constructor(private fb: FormBuilder, private httpClient: HttpClient) {
     this.myForm = this.fb.group({
-      'cpid': [''],
-      'cpName': [''],
-      'cpprice': [''],
+      'id': [''],
+      'name': [''],
+      'sex': [''],
+      'age': [''],
+      'telephone': [''],
     });
-    this.cpid = this.myForm.controls['cpid'];
-    this.cpName = this.myForm.controls['cpName'];
-    this.cpprice = this.myForm.controls['cpprice'];
+    this.id = this.myForm.controls['id'];
+    this.name = this.myForm.controls['name'];
+    this.sex = this.myForm.controls['sex'];
+    this.age = this.myForm.controls['age'];
+    this.telephone = this.myForm.controls['telephone'];
   }
   /*界面初始化*/
   ngOnInit(): void {
@@ -41,10 +47,12 @@ export class ProductManagementComponentComponent implements OnInit {
 
   search() {
     let params = new HttpParams()
-      .set('cpid', this.cpid.value)
-      .set('cpName', this.cpName.value)
-      .set('cpprice', this.cpprice.value)
-    if (this.cpid.value) {
+      .set('id', this.id.value)
+      .set('name', this.name.value)
+      .set('sex', this.sex.value)
+      .set('age', this.age.value)
+      .set('telephone', this.telephone.value)
+    if (this.id.value) {
       this.cpusers$ = <Observable<Cp>>this.httpClient.get(this.baseUrl + 'cpusers/' + params);
     } else {
       this.cpusers$ = <Observable<Cp>>this.httpClient.get(this.baseUrl + 'cpusers');
@@ -53,9 +61,11 @@ export class ProductManagementComponentComponent implements OnInit {
 
   add() {
     let params = new HttpParams()
-      .set('cpid', this.cpid.value)
-      .set('cpName', this.cpName.value)
-      .set('cpprice', this.cpprice.value)
+      .set('id', this.id.value)
+      .set('name', this.name.value)
+      .set('sex', this.sex.value)
+      .set('age', this.age.value)
+      .set('telephone', this.telephone.value)
 
     this.httpClient.post(this.baseUrl + 'cpusers', params).subscribe(
       (val: any) => {
@@ -69,9 +79,11 @@ export class ProductManagementComponentComponent implements OnInit {
 
   delete() {
     let params = new HttpParams()
-      .set('cpid', this.cpid.value)
-      .set('cpName', this.cpName.value)
-      .set('cpprice', this.cpprice.value)
+      .set('id', this.id.value)
+      .set('name', this.name.value)
+      .set('sex', this.sex.value)
+      .set('age', this.age.value)
+      .set('telephone', this.telephone.value)
 
     if (!this.currentcpusers) {
       alert('必须先选择用户！');
@@ -90,9 +102,11 @@ export class ProductManagementComponentComponent implements OnInit {
 
   update() {
     let params = new HttpParams()
-      .set('cpid', this.cpid.value)
-      .set('cpName', this.cpName.value)
-      .set('cpprice', this.cpprice.value)
+      .set('id', this.id.value)
+      .set('name', this.name.value)
+      .set('sex', this.sex.value)
+      .set('age', this.age.value)
+      .set('telephone', this.telephone.value)
     if (!this.currentcpusers) {
       alert('必须先选择用户！');
     }

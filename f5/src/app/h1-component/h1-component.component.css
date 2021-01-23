@@ -1,0 +1,30 @@
+nav{
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.a{
+    font-size: 2rem;
+}
+
+a:hover{ 
+background-color:lightgrey;
+}
+
+.b{
+    display:flex;
+    justify-content:center;
+    align-items:center; 
+}
+
+img{
+    max-width: 100% 
+}
+
+footer{
+    margin-top: 12rem;
+    width:100%;
+    text-align: center;
+    background-color: grey;
+    color: white;
+}

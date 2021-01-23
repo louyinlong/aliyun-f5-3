@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ctrlCenter = require("../control/ctrlCenter");
+const ctrlali = require("../control/ctrl-ali");
+const device = require("../control/device");
 const router = express.Router();
 router.use(bodyParser.json());//将数据转换成json
 router.use(bodyParser.urlencoded({ extended: false })); //配置post的body模块
@@ -14,29 +16,31 @@ router.all('*', function (req, res, next) {
     else next();
 });
 
-//控制LED
-router.get("/device", ctrlCenter.device);
-router.put("/device", ctrlCenter.update);
-//控制风扇
-router.get("/fs", ctrlCenter.fs);
-router.put("/fs", ctrlCenter.fsupdate);
-//控制空调
-router.get("/device5", ctrlCenter.device5);
-router.put("/device5", ctrlCenter.acupdate);
+
+router.get("/light", device.getYali);
+router.get("/led", device.getled);
+router.get("/deng", device.getdeng);
+router.put('light/:id/:light111', device.sendlight111);
+router.put('/led/:id/:led', device.sendled);
+router.put('/deng/:id/:deng', device.senddeng);
 //阿里云
-router.put("/led/:id/:status", ctrlCenter.led);
+router.post('/aliadd', ctrlali.add);
+router.delete('/alidelete/:proKey', ctrlali.delete);
+router.put('/aliupdate', ctrlali.update);
+router.get('/alisearch/:proKey', ctrlali.search);
+router.get('/ali', ctrlali.searchall);
 router.put("/ws/:id/:value", ctrlCenter.wd);
 router.put("/sd/:id/:value", ctrlCenter.sd);
-router.put("/fs/:id/:status", ctrlCenter.fs);
-router.put("/ac/:id/:status", ctrlCenter.ac);
+router.get("/sd/:id", ctrlCenter.getsd);
 //登录验证
 router.post('/dls', ctrlCenter.DLS);
+router.post('/dls2', ctrlCenter.DLS2);
 //设备查询
 router.get('/cpusers', ctrlCenter.USER);
-router.get('/cpusers/:cpid', ctrlCenter.USERID);
+router.get('/cpusers/:id', ctrlCenter.USERID);
 //用户查询
 router.get('/users', ctrlCenter.dev);
-router.get('/users/:id', ctrlCenter.devid);
+router.get('/users/:userID', ctrlCenter.devid);
 //添加
 router.post('/cpusers', ctrlCenter.userAdd);
 router.post('/users', ctrlCenter.devAdd);
@@ -44,7 +48,10 @@ router.post('/users', ctrlCenter.devAdd);
 router.put('/cpusers', ctrlCenter.userUpadte);
 router.put('/users', ctrlCenter.devUpdate);
 //删除
-router.delete('/cpusers/:cpid', ctrlCenter.userDelete);
-router.delete('/users/:id', ctrlCenter.devDelete);
+router.delete('/cpusers/:id', ctrlCenter.userDelete);
+router.delete('/users/:userID', ctrlCenter.devDelete);
+
+router.put('/light/:id/:light111', device.sendlight111);
+router.put('/led/:id/:led', device.sendled);
 
 module.exports = router;

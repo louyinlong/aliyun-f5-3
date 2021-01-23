@@ -4,7 +4,8 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">F5管理系统</a>
+        <a class="navbar-brand a">F5管理系统</a>
+        <a class="navbar-brand" [routerLink]="['/centre']">首页</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             </ul>
@@ -20,9 +21,11 @@
         <a class="list-group-item list-group-item-danger" [routerLink]="['product']">设备信息</a>
         <a class="list-group-item list-group-item-warning" [routerLink]="['product-detail']">设备实况</a>
         <a class="list-group-item list-group-item-action list-group-item-success"
-            [routerLink]="['product-management']">设备管理</a>
+            [routerLink]="['product-management']">普通用户管理</a>
         <a class="list-group-item list-group-item-action list-group-item-primary"
-            [routerLink]="['user-management']">用户管理</a>
+            [routerLink]="['user-management']">特权用户管理</a>
+        <a class="list-group-item list-group-item-action list-group-item-info" [routerLink]="['ali']">设备管理</a>
+        <a class="list-group-item list-group-item-action list-group-item-secondary" [routerLink]="['bs']">运维大屏</a>
         <a class="list-group-item list-group-item-action list-group-item-dark" [routerLink]="['exit']">退出</a>
     </nav>
     <div class="col-md-10">
@@ -30,5 +33,5 @@
     </div>
 </article>
 <footer>
-    <a class="buttom">©2020 F5</a>
+    <a class="buttom">copyright©2020-2021 F5智能科技有限公司 版权所有(纯属虚构)</a>
 </footer>

@@ -1,5 +1,6 @@
 const container = require('rhea');
 const crypto = require('crypto');
+const mysql = require('mysql');
 
 //建立连接。 
 var dt = new Date;
@@ -24,6 +25,102 @@ container.on('message', function (context) {
     var messageId = msg.message_id;
     var topic = msg.application_properties.topic;
     var content = Buffer.from(msg.body.content).toString();
+
+    console.log(topic);
+    console.log("-----------");
+    console.log(content);
+    console.log("-----------");
+
+    if (topic === '/a1t18JUPNjP/light111/thing/event/property/post') {
+        const resp = JSON.parse(content);
+        // console.log(resp.item.LightStatus.value)
+
+        var status = Number(resp.items.LightStatus.value)
+
+        var connection = mysql.createConnection({
+            host: "localhost",
+            port: "3306",
+            user: "root",
+            password: "",
+            database: "f5-3"
+        })
+        connection.connect();
+        console.log("连接成功");
+        connection.query('insert into yali(value,time) values(?,?)', [status, Date.now()], function (err, result) {
+            if (err) {
+                throw err;
+            } else {
+                var data = {
+                    code: '200',
+                    code_decoration: '添加成功'
+                }
+                console.log('--------');
+                console.log(result);
+            }
+        })
+        connection.end();
+    }
+
+    if (topic === '/a1FRdLzM5i8/dcLED/thing/event/property/post') {
+        const resp = JSON.parse(content);
+        // console.log(resp.item.LightStatus.value)
+
+        var status = Number(resp.items.LightStatus.value)
+
+        var connection = mysql.createConnection({
+            host: "localhost",
+            port: "3306",
+            user: "root",
+            password: "",
+            database: "f5-3"
+        })
+        connection.connect();
+        console.log("连接成功");
+        connection.query('insert into dc(value,time) values(?,?)', [status, Date.now()], function (err, result) {
+            if (err) {
+                throw err;
+            } else {
+                var data = {
+                    code: '200',
+                    code_decoration: '添加成功'
+                }
+                console.log('--------');
+                console.log(result);
+            }
+        })
+        connection.end();
+    }
+
+    if (topic === '/a1FRdLzM5i8/LED713/thing/event/property/post') {
+        const resp = JSON.parse(content);
+        // console.log(resp.item.LightStatus.value)
+
+        var status = Number(resp.items.LightStatus.value)
+
+        var connection = mysql.createConnection({
+            host: "localhost",
+            port: "3306",
+            user: "root",
+            password: "",
+            database: "f5-3"
+        })
+        connection.connect();
+        console.log("连接成功");
+        connection.query('insert into deng (value,time) values(?,?)', [status, Date.now()], function (err, result) {
+            if (err) {
+                throw err;
+            } else {
+                var data = {
+                    code: '200',
+                    code_decoration: '添加成功'
+                }
+                console.log('--------');
+                console.log(result);
+            }
+        })
+        connection.end();
+    }
+
     //发送ACK，注意不要在回调函数有耗时逻辑。 
     context.delivery.accept();
 });

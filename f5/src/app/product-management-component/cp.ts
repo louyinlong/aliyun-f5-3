@@ -1,5 +1,7 @@
 export class Cp {
-    cpid: string;
-    cpName: string;
-    cpprice: string
+    id: string;
+    name: string;
+    sex: string;
+    age: string;
+    telephone: string;
 }

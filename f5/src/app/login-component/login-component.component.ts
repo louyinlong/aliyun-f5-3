@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { Dl } from './dl';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-function userNameValidator(control: FormControl): { [s: string]: boolean } {
-  if (!control.value.match(/^a/)) {
-    return { invalidUser: true };
-  }
-}
+// function userNameValidator(control: FormControl): { [s: string]: boolean } {
+//   if (!control.value.match(/^a/)) {
+//     return { invalidUser: true };
+//   }
+// }
 
 @Component({
   selector: 'app-login-component',
@@ -31,7 +31,7 @@ export class LoginComponentComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpClient: HttpClient, private authService: AuthService, private router: Router) {
     this.myForm = this.fb.group(
       {
-        'userName': ['admin', Validators.compose([Validators.required, userNameValidator])],
+        'userName': ['丹丹姐', Validators.compose([Validators.required])],
         'password': ['123456', Validators.compose([Validators.required, Validators.minLength(5)])]
       }
     );

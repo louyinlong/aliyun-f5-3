@@ -13,40 +13,40 @@ export class ProductComponentComponent implements OnInit {
   }
   /*界面初始化*/
   ngOnInit(): void {
-    this.led$ = this.deviceService.getLED();
+    //   this.led$ = this.deviceService.getLED();
+    // }
+    // // 开灯
+    // turnOn() {
+    //   this.deviceService.toggleLED(1).subscribe(
+    //     () => {
+    //       console.log('Turn on LED');
+    //       timer(1500).subscribe(
+    //         () => {
+    //           this.led$ = this.deviceService.getLED();
+    //         }
+    //       );
+    //     }
+    //   );
+    // }
+    // // 关灯
+    // turnOff() {
+    //   this.deviceService.toggleLED(0).subscribe(
+    //     () => {
+    //       console.log('Turn off LED');
+    //       timer(1500).subscribe(
+    //         () => {
+    //           this.led$ = this.deviceService.getLED();
+    //         }
+    //       );
+    //     }
+    //   );
   }
-  // 开灯
-  turnOn() {
-    this.deviceService.toggleLED(1).subscribe(
-      () => {
-        console.log('Turn on LED');
-        timer(1500).subscribe(
-          () => {
-            this.led$ = this.deviceService.getLED();
-          }
-        );
-      }
-    );
-  }
-  // 关灯
-  turnOff() {
-    this.deviceService.toggleLED(0).subscribe(
-      () => {
-        console.log('Turn off LED');
-        timer(1500).subscribe(
-          () => {
-            this.led$ = this.deviceService.getLED();
-          }
-        );
-      }
-    );
-  }
 
 
 
 
 
-  
+
 }
 
 
